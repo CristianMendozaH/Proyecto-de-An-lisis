@@ -6,7 +6,8 @@
     text-decoration: none;
 }
 
-.continer{
+
+.container{
     width: 100%;
     height: 100%;
     background-color: #D0D0D0;
@@ -33,7 +34,13 @@
 
 .form-content h1::after{
     content: '';
-    
-
-
+    width: 30px;
+    height: 4px;
+    border-radius: 3px;
+    background: #04BD7D;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translate(-50%);
 }
+
