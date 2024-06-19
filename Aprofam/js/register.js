@@ -6,10 +6,10 @@ const alertaError = document.querySelector(".form-register .alerta-error");
 const alertaExito = document.querySelector(".form-register .alerta-exito");
 
 const userNameRegex = /^[a-zA-Z0-9\_\-]{4,16}$/;
-export const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-export const passwordRegex = /^.{4,12}$/;
+const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+const passwordRegex = /^.{4,12}$/;
 
-export const estadoValidacionCampos = {
+const estadoValidacionCampos = {
   userName: false,
   userEmail: false,
   userPassword: false,
@@ -18,7 +18,7 @@ export const estadoValidacionCampos = {
 document.addEventListener("DOMContentLoaded", () => {
   formRegister.addEventListener("submit", (e) => {
     e.preventDefault();
-    enviarFormulario(formRegister,alertaError,alertaExito);
+    enviarFormulario();
   });
 
   inputUser.addEventListener("input", () => {
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-export function validarCampo(regularExpresion, campo, mensaje) {
+function validarCampo(regularExpresion, campo, mensaje) {
   const validarCampo= regularExpresion.test(campo.value);
   if (validarCampo) {
     eliminarAlerta(campo.parentElement.parentElement);
@@ -61,16 +61,16 @@ function eliminarAlerta(referencia) {
   if (alerta) alerta.remove();
 }
 
-export function enviarFormulario(form, alertaError,alertaExito) {
+function enviarFormulario() {
   //VALIDAMOS EL ENVIO DE NUESTRO FORMULARIO
 
   if (estadoValidacionCampos.userName && estadoValidacionCampos.userEmail && estadoValidacionCampos.userPassword) {
-    //Se agregó estas 3 líneas de código que evitan un error al mostrar las alertas , lo que hacen es resetear los valores del objeto
+    /*ACTUALIZACION DEL CODIGO - RESETEAMOS A FALSE LAS PROPIEDADES DEL OBJETO*/
     estadoValidacionCampos.userName = false;
     estadoValidacionCampos.userEmail = false;
     estadoValidacionCampos.userPassword = false;
 
-    form.reset();
+    formRegister.reset();
     alertaExito.classList.add("alertaExito");
     alertaError.classList.remove("alertaError");
     setTimeout(() => {
